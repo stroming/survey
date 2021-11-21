@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
-  resources :users
+  # pages crud
   root "page#home"
   get '/about', to: "page#about"
+  
+  #users crud
+  resources :users
+
+  # sessions crud
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
+
+  # survey crud
+  resources :surveys
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
             flash.now[:danger] = "There was something wrong with your login information"
             render 'new'
         end
+        # debugger
     end
         
     def destroy

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :surveys, class_name: "survey", foreign_key: "reference_id"
     before_save {self.email = email.downcase}
     VALID_EMAIL_REGEX = /\A^(.+)@(.+)$\z/
     VALID_USERNAME_REGEX = /\A[0-9]*|[A-Za-z]*\z/
