@@ -7,8 +7,8 @@
 
 <p>
   <strong>Email:</strong>
-  <%= @survey.email %>
+  <%= @survey.description %>
 </p>
 
-<%= link_to 'Edit', edit_survey_path(@user) %> |
-<%= link_to 'Back', survey_path %>
+<%= link_to 'Edit', edit_survey_path(@survey) %> |
+<%= link_to 'Back', surveys_path %>

@@ -1,13 +1,14 @@
 class SurveysController < ApplicationController
+    before_action :set_survey, only: %i[show edit update destroy]
 
-    # GET /users or /users.json
+    # GET /survets 
     def index
-      @surveys = Survey.all
+      @survey = Survey.all
     end
   
     # GET /users/1 or /users/1.json
     def show
-      @surveys = Survey.all
+      set_survey
     end
   
     # GET /users/new
@@ -17,14 +18,14 @@ class SurveysController < ApplicationController
   
     # GET /users/1/edit
     def edit
-      @surveys = Survey.all
+
     end
   
     def update
-      @survey = Survey.find(params[:id])
+      debugger
       if @survey.update(survey_params)
         flash[:success] = "Your survey was updated successfully"
-        redirect_to root
+        redirect_to root_path
       else
         render 'edit'
       end
@@ -44,20 +45,22 @@ class SurveysController < ApplicationController
         #   format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
+      debugger
     end
   
     # DELETE /users/1 or /users/1.json
     def destroy
       @survey.destroy
       respond_to do |format|
-        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+        format.html { redirect_to new_survey, notice: "User was successfully destroyed." }
         # format.json { head :no_content }
+        debugger
       end
     end
   
     private
       # Use callbacks to share common setup or constraints between actions.
-      def set_user
+      def set_survey
         @survey = Survey.find(params[:id])
       end
   
