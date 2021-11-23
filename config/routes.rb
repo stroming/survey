@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # survey crud
   resources :surveys do 
     get 'display_for_user', to: 'surveys#all_user_surveys'
+    delete '/surveys.:id' => 'surveys#destroy'
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

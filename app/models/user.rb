@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-    has_many :surveys, class_name: "survey", foreign_key: "reference_id"
+    has_many :surveys
     before_save {self.email = email.downcase}
+    before_destroy :destroy_surveys
     VALID_EMAIL_REGEX = /\A^(.+)@(.+)$\z/
     VALID_USERNAME_REGEX = /\A[0-9]*|[A-Za-z]*\z/
 
@@ -21,4 +22,11 @@ class User < ApplicationRecord
     
     # password Validation is here:
     has_secure_password
+
+    private
+
+    def destroy_surveys
+        @survey = Survey.where(user_id: self.id)
+        @survey.destroy_all
+    end
 end
