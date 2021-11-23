@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    # respond_to do |format|
+    # respond_to do |format|git
       if @user.save
         session[:user_id] = @user.id
         flash[:success] = "Welcome #{@user.username}!"

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get '/logout', to: "sessions#destroy"
 
   # survey crud
-  resources :surveys
+  resources :surveys do 
+    get 'display_for_user', to: 'surveys#all_user_surveys'
+  end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

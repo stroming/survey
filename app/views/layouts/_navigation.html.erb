@@ -20,7 +20,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<%= new_survey_path(current_user) %>">Create a Survey</a>
-                        <a class="dropdown-item" href="<%= edit_survey_path(current_user) %>">View your profile</a>
+                        <a class="dropdown-item" href="<%= survey_display_for_user_path(current_user) %>">Your Surveys</a>
+                        <a class="dropdown-item" href="<%= surveys_path(current_user) %>">All surveys</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>

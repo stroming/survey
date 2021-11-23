@@ -1,14 +1,21 @@
 class SurveysController < ApplicationController
     before_action :set_survey, only: %i[show edit update destroy]
+    before_action :require_user, except: [:index, :show]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
 
-    # GET /survets 
+    # GET /surveys
     def index
       @survey = Survey.all
     end
-  
+    
+    # Get /all_user_surveys
+    def all_user_surveys
+      @survey = Survey.find_by(user_id: current_user.id)
+    end
+
     # GET /users/1 or /users/1.json
     def show
-      set_survey
+
     end
   
     # GET /users/new
@@ -45,7 +52,6 @@ class SurveysController < ApplicationController
         #   format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
-      debugger
     end
   
     # DELETE /users/1 or /users/1.json
@@ -54,7 +60,6 @@ class SurveysController < ApplicationController
       respond_to do |format|
         format.html { redirect_to new_survey, notice: "User was successfully destroyed." }
         # format.json { head :no_content }
-        debugger
       end
     end
   
@@ -67,6 +72,13 @@ class SurveysController < ApplicationController
       # Only allow a list of trusted parameters through.
       def survey_params
         params.require(:survey).permit(:title, :description)
+      end
+
+      def require_same_user
+        if current_user != @survey.user and !current_user.admin
+          flash[:danger] = "You can only edit your own articles"
+          redirect_to(root_path)
+        end
       end
   end
   
