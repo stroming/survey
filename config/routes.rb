@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   
   # question crud
   resources :questions
-  
+
+  # answer crud
+  resources :answers
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

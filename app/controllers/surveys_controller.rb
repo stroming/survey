@@ -29,7 +29,6 @@ class SurveysController < ApplicationController
     end
   
     def update
-      debugger
       if @survey.update(survey_params)
         flash[:success] = "Your survey was updated successfully"
         redirect_to root_path
