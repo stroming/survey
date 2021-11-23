@@ -2,7 +2,7 @@ class Survey < ApplicationRecord
     belongs_to :user
     has_many :questions
     accepts_nested_attributes_for :questions
-    after_destroy :destroy_questions
+    before_destroy :destroy_questions
     
     # Validation for title
     validates :title, presence: true, uniqueness: { case_sensitive: false }, length: {maximum: 50}
@@ -11,6 +11,7 @@ class Survey < ApplicationRecord
 
     private
     def destroy_questions
-        self.questions.destroy_all   
+        @question = Question.where(survey_id: self.id)
+        @question.destroy_all   
     end
 end

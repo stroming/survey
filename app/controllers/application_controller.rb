@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     def same_user?
         if current_user.id = @survey.user.id
             return true
-        # flash[:danger] = "You must be logged in to perform that action"
-        # redirect_to root_path
+            flash[:danger] = "You must be logged in to perform that action"
+            redirect_to root_path
         end
 
         return false
