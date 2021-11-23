@@ -21,6 +21,7 @@ class SurveysController < ApplicationController
     # GET /users/new
     def new
       @survey = Survey.new
+      @survey.questions.build.answers.build
     end
   
     # GET /users/1/edit
@@ -71,7 +72,11 @@ class SurveysController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def survey_params
-        params.require(:survey).permit(:title, :description)
+        params.require(:survey).permit(:title, :description,
+          :questions_attributes => [:name,
+            :answers_attributes => [:answer]
+          ]
+        )
       end
 
       def require_same_user

@@ -1,7 +1,37 @@
 <%= render 'shared/errors' , obj: @survey %>
   <div class='row'>
     <div class='col-xs-12'>
-      <%= form_for(@survey, :html=> {class: "form-horizontal", role: "form"}) do |f| %>
+      <%= form_with(model: @survey, local: true) do |form| %>  # Show name and label <%= form.fields_for :questions do |s| %> 
+      <br>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+          <br>
+          <p>survey ends here</p>
+          <br>
+        
+          <%= s.label :question %>
+          <%= s.text_field :question %>
+
+          <br>
+          <p>answer ends here</p>
+          <br>
+
+          <%= s.fields_for :answers do |e| %>
+            <%= e.label :answer %>
+            <%= e.text_field :answer %>
+          <% end %>
+
+          <br>
+          <p>answer ends here</p>
+          <br>
+          
+          <% end %>  # Submit Button
+        <% end %>
+
+
+
+
+      <!-- <%= form_for(@survey, :html=> {class: "form-horizontal", role: "form"}) do |f| %>
         <div class="form-group">
           <div class="control-label col-sm-2">
             <%= f.label :title %>
@@ -26,6 +56,6 @@
         <% end %>
           <div class="col-xs-4 col-xs-offset-4">
             [ <%= link_to "Cancel request and return to articles listing" , surveys_path %> ]
-          </div>
+          </div> -->
     </div>
   </div>
