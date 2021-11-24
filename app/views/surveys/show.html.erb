@@ -10,5 +10,15 @@
   <%= @survey.description %>
 </p>
 
+  <div class="list-group">
+        
+      <% @survey.questions.each do |q| %>
+      
+        <button type="button" class="list-group-item list-group-item-action active"><%= q.question%></button>
+        <% q.answers.each do |a| %>
+          <button type="button" class="list-group-item list-group-item-action"><%= a.answer%></button>
+         <% end %>
+      <% end %>
+  </div>
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>

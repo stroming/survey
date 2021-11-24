@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
     
     def current_user
         # return current user if he exists if not return the user based on the current id session
+        if User.where(id: session[:user_id]).any? == false
+            return
+        end
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 

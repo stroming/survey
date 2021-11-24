@@ -1,2 +1,12 @@
-<h1>Page#home</h1>
-<p>Find me in app/views/page/home.html.erb</p>
+<div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <% if logged_in? %>
+  <a class="btn btn-primary btn-lg" href="<%= new_survey_path(current_user) %>" role="button">Create a survey</a>
+  <% else  %>
+  <a class="btn btn-primary btn-lg" href="<%= new_user_path(current_user) %>" role="button">Register</a>
+  <% end%>
+  <a class="btn btn-primary btn-lg" href="/about" role="button">About us</a>
+</div>
